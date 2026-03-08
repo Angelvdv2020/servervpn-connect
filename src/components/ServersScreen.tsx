@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Search, Zap, Check } from 'lucide-react';
+import { ArrowLeft, Search, Zap } from 'lucide-react';
 import { useAppStore, mockServers } from '@/store/appStore';
 
 const ServersScreen = () => {
@@ -15,12 +15,42 @@ const ServersScreen = () => {
   );
 
   const fastServers = filtered.filter((s) => s.isFast);
-  const allServers = filtered;
 
   const handleSelect = (server: typeof mockServers[0]) => {
     setSelectedServer(server);
     setMode('manual');
     setCurrentScreen('home');
+  };
+
+  const ServerRow = ({ server, index }: { server: typeof mockServers[0]; index: number }) => {
+    const isSelected = selectedServer?.id === server.id;
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.03 }}
+        className={`flex items-center justify-between p-4 rounded-xl transition-colors ${
+          isSelected
+            ? 'bg-primary/10 border border-primary/30'
+            : 'bg-card/60 border border-border/40 hover:bg-secondary'
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">{server.flag}</span>
+          <span className="text-sm font-medium">{server.country}</span>
+        </div>
+        <button
+          onClick={() => handleSelect(server)}
+          className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+            isSelected
+              ? 'bg-primary text-primary-foreground'
+              : 'border border-border text-muted-foreground hover:text-foreground hover:border-primary/50'
+          }`}
+        >
+          {isSelected ? 'Выбран' : 'Connect'}
+        </button>
+      </motion.div>
+    );
   };
 
   return (
@@ -33,7 +63,7 @@ const ServersScreen = () => {
         >
           <ArrowLeft className="w-4 h-4 text-secondary-foreground" />
         </button>
-        <h1 className="text-xl font-bold">Серверы</h1>
+        <h1 className="text-xl font-bold">Servers</h1>
       </div>
 
       {/* Search */}
@@ -43,8 +73,8 @@ const ServersScreen = () => {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Поиск серверов..."
-          className="w-full pl-10 pr-4 py-3 rounded-xl bg-card glass-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+          placeholder="Search Countries"
+          className="w-full pl-10 pr-4 py-3 rounded-xl bg-card/60 border border-border/40 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
         />
       </div>
 
@@ -53,38 +83,11 @@ const ServersScreen = () => {
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-primary" />
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Быстрые</h2>
+            <h2 className="text-sm font-medium text-muted-foreground">Fast Servers</h2>
           </div>
           <div className="space-y-2">
             {fastServers.map((server, i) => (
-              <motion.button
-                key={server.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
-                onClick={() => handleSelect(server)}
-                className={`w-full flex items-center justify-between p-4 rounded-xl transition-colors ${
-                  selectedServer?.id === server.id
-                    ? 'bg-primary/10 border border-primary/30'
-                    : 'bg-card glass-border hover:bg-secondary'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{server.flag}</span>
-                  <div className="text-left">
-                    <p className="text-sm font-medium">{server.name}</p>
-                    <p className="text-xs text-muted-foreground">{server.country} · {server.city}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  {server.ping && (
-                    <span className="text-xs text-muted-foreground font-mono">{server.ping}ms</span>
-                  )}
-                  {selectedServer?.id === server.id && (
-                    <Check className="w-4 h-4 text-primary" />
-                  )}
-                </div>
-              </motion.button>
+              <ServerRow key={server.id} server={server} index={i} />
             ))}
           </div>
         </div>
@@ -92,42 +95,15 @@ const ServersScreen = () => {
 
       {/* All Servers */}
       <div>
-        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Все серверы</h2>
+        <h2 className="text-sm font-medium text-muted-foreground mb-3">All Servers</h2>
         <div className="space-y-2">
-          {allServers.map((server, i) => (
-            <motion.button
-              key={server.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.03 }}
-              onClick={() => handleSelect(server)}
-              className={`w-full flex items-center justify-between p-4 rounded-xl transition-colors ${
-                selectedServer?.id === server.id
-                  ? 'bg-primary/10 border border-primary/30'
-                  : 'bg-card glass-border hover:bg-secondary'
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{server.flag}</span>
-                <div className="text-left">
-                  <p className="text-sm font-medium">{server.name}</p>
-                  <p className="text-xs text-muted-foreground">{server.country} · {server.city}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                {server.ping && (
-                  <span className="text-xs text-muted-foreground font-mono">{server.ping}ms</span>
-                )}
-                {selectedServer?.id === server.id && (
-                  <Check className="w-4 h-4 text-primary" />
-                )}
-              </div>
-            </motion.button>
+          {filtered.map((server, i) => (
+            <ServerRow key={server.id} server={server} index={i} />
           ))}
         </div>
       </div>
 
-      {allServers.length === 0 && (
+      {filtered.length === 0 && (
         <div className="flex-1 flex items-center justify-center">
           <p className="text-muted-foreground text-sm">Серверы не найдены</p>
         </div>
