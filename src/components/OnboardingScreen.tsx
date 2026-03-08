@@ -26,7 +26,7 @@ const OnboardingScreen = () => {
         transition={{ duration: 0.8 }}
         className="flex flex-col items-center pt-8"
       >
-        <img src={noryxLogo} alt="NORYX" className="h-16 object-contain mb-4" />
+        <img src={noryxLogo} alt="NORYX" className="w-56 object-contain mb-4" />
         <p className="text-muted-foreground mt-2 text-sm">Безопасный доступ в интернет</p>
       </motion.div>
 
