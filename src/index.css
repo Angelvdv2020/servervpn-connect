@@ -6,55 +6,55 @@
 
 @layer base {
   :root {
-    --background: 225 65% 28%;
-    --foreground: 210 20% 92%;
+    --background: 210 52% 73%;
+    --foreground: 210 60% 96%;
 
-    --card: 225 55% 18%;
-    --card-foreground: 210 20% 92%;
+    --card: 214 65% 31%;
+    --card-foreground: 210 60% 96%;
 
-    --popover: 220 18% 10%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 214 65% 28%;
+    --popover-foreground: 210 60% 96%;
 
-    --primary: 160 80% 45%;
+    --primary: 160 65% 48%;
     --primary-foreground: 220 20% 7%;
 
-    --secondary: 225 40% 14%;
-    --secondary-foreground: 210 20% 85%;
+    --secondary: 210 55% 25%;
+    --secondary-foreground: 210 60% 90%;
 
-    --muted: 225 38% 12%;
-    --muted-foreground: 215 12% 50%;
+    --muted: 210 50% 22%;
+    --muted-foreground: 210 30% 75%;
 
-    --accent: 160 60% 35%;
-    --accent-foreground: 210 20% 95%;
+    --accent: 160 60% 38%;
+    --accent-foreground: 210 60% 96%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 225 35% 16%;
-    --input: 225 35% 16%;
-    --ring: 160 80% 45%;
+    --border: 210 40% 40%;
+    --input: 210 40% 30%;
+    --ring: 160 65% 48%;
 
     --radius: 0.75rem;
 
-    --vpn-glow: 160 80% 45%;
+    --vpn-glow: 160 65% 48%;
     --vpn-glow-dim: 160 40% 20%;
     --vpn-danger: 0 72% 55%;
     --vpn-warning: 38 92% 50%;
-    --vpn-surface: 225 42% 11%;
-    --vpn-surface-hover: 225 42% 14%;
-    --vpn-gradient-start: 160 80% 45%;
-    --vpn-gradient-end: 180 70% 40%;
-    --vpn-connected: 160 80% 45%;
-    --vpn-disconnected: 215 12% 40%;
+    --vpn-surface: 214 65% 28%;
+    --vpn-surface-hover: 214 55% 32%;
+    --vpn-gradient-start: 160 65% 48%;
+    --vpn-gradient-end: 160 50% 38%;
+    --vpn-connected: 160 65% 48%;
+    --vpn-disconnected: 210 20% 50%;
 
-    --sidebar-background: 225 45% 10%;
-    --sidebar-foreground: 210 20% 85%;
-    --sidebar-primary: 160 80% 45%;
-    --sidebar-primary-foreground: 225 50% 8%;
-    --sidebar-accent: 225 38% 12%;
-    --sidebar-accent-foreground: 210 20% 85%;
-    --sidebar-border: 225 35% 16%;
-    --sidebar-ring: 160 80% 45%;
+    --sidebar-background: 214 65% 22%;
+    --sidebar-foreground: 210 60% 90%;
+    --sidebar-primary: 160 65% 48%;
+    --sidebar-primary-foreground: 220 50% 8%;
+    --sidebar-accent: 214 55% 28%;
+    --sidebar-accent-foreground: 210 60% 90%;
+    --sidebar-border: 210 40% 35%;
+    --sidebar-ring: 160 65% 48%;
   }
 }
 
@@ -64,18 +64,21 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply font-sans antialiased;
+    background: linear-gradient(160deg, #8FBCE6 0%, #7DAEDC 30%, #5FA8D3 60%, #4F86B5 100%);
+    background-blend-mode: soft-light;
+    color: #EAF4FF;
+    min-height: 100vh;
   }
 }
 
 @layer utilities {
   .vpn-glow {
-    box-shadow: 0 0 60px -10px hsl(var(--vpn-glow) / 0.4),
-                0 0 120px -20px hsl(var(--vpn-glow) / 0.2);
+    box-shadow: 0 0 40px rgba(46, 211, 154, 0.45);
   }
 
   .vpn-glow-sm {
-    box-shadow: 0 0 20px -5px hsl(var(--vpn-glow) / 0.3);
+    box-shadow: 0 0 20px rgba(46, 211, 154, 0.25);
   }
 
   .vpn-glow-danger {
@@ -84,35 +87,62 @@
   }
 
   .vpn-gradient {
-    background: linear-gradient(135deg, hsl(var(--vpn-gradient-start)), hsl(var(--vpn-gradient-end)));
+    background: radial-gradient(circle, #2ED39A, #19A979);
   }
 
   .vpn-surface {
-    background: hsl(var(--vpn-surface));
+    background: rgba(30, 70, 130, 0.65);
   }
 
   .vpn-text-glow {
-    text-shadow: 0 0 20px hsl(var(--vpn-glow) / 0.5);
+    text-shadow: 0 0 20px rgba(46, 211, 154, 0.5);
   }
 
   .glass {
-    background: hsl(var(--card) / 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(20, 50, 100, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
   }
 
   .glass-border {
-    border: 1px solid hsl(var(--border) / 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .card-surface {
+    background: rgba(30, 70, 130, 0.65);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .metallic-noise {
+    position: relative;
+  }
+
+  .metallic-noise::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .text-secondary-custom {
+    color: rgba(255, 255, 255, 0.65);
   }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { 
-    box-shadow: 0 0 40px -10px hsl(var(--vpn-glow) / 0.4);
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(46, 211, 154, 0.3);
   }
-  50% { 
-    box-shadow: 0 0 80px -10px hsl(var(--vpn-glow) / 0.6),
-                0 0 120px -20px hsl(var(--vpn-glow) / 0.3);
+  50% {
+    box-shadow: 0 0 60px rgba(46, 211, 154, 0.5),
+                0 0 100px rgba(46, 211, 154, 0.2);
   }
 }
 

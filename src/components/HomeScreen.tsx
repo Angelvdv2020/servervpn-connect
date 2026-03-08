@@ -96,7 +96,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen px-5 pt-4 pb-24">
+    <div className="flex flex-col min-h-screen px-5 pt-4 pb-24 metallic-noise relative z-10">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -104,9 +104,9 @@ const HomeScreen = () => {
         </div>
         <button
           onClick={handleRefresh}
-          className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center"
+          className="w-9 h-9 rounded-xl card-surface flex items-center justify-center"
         >
-          <RefreshCw className={`w-4 h-4 text-secondary-foreground ${isRefreshing ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-4 h-4 text-foreground/70 ${isRefreshing ? 'animate-spin' : ''}`} />
         </button>
       </div>
 
@@ -144,12 +144,14 @@ const HomeScreen = () => {
           {isConnected && (
             <>
               <motion.div
-                className="absolute w-52 h-52 rounded-full border-2 border-primary/20"
+                className="absolute w-52 h-52 rounded-full"
+                style={{ border: '2px solid rgba(46,211,154,0.35)' }}
                 animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0, 0.3] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
               />
               <motion.div
-                className="absolute w-44 h-44 rounded-full border-2 border-primary/30"
+                className="absolute w-44 h-44 rounded-full"
+                style={{ border: '2px solid rgba(46,211,154,0.35)' }}
                 animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.1, 0.4] }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
               />
@@ -157,13 +159,13 @@ const HomeScreen = () => {
           )}
 
           {/* Static ring */}
-          <div className={`absolute w-40 h-40 rounded-full border-2 ${
-            isConnected ? 'border-primary/40' : 'border-muted-foreground/15'
-          }`} />
+          <div className="absolute w-40 h-40 rounded-full" style={{
+            border: isConnected ? '2px solid rgba(46,211,154,0.35)' : '2px solid rgba(255,255,255,0.1)'
+          }} />
 
           {/* Inner glow ring */}
           <div className={`absolute w-36 h-36 rounded-full ${
-            isConnected ? 'bg-primary/10' : 'bg-muted/20'
+            isConnected ? 'bg-primary/10' : 'bg-white/5'
           }`} />
 
           {/* Main power button */}
@@ -172,15 +174,23 @@ const HomeScreen = () => {
             whileHover={{ scale: 1.05 }}
             onClick={handleMainAction}
             disabled={isTransitioning}
-            className={`relative w-28 h-28 rounded-full flex items-center justify-center transition-all shadow-2xl ${
+            className={`relative w-28 h-28 rounded-full flex items-center justify-center transition-all ${
               isConnected
-                ? 'bg-gradient-to-br from-primary to-accent vpn-glow'
-                : !hasSubscription
-                  ? 'bg-gradient-to-br from-vpn-warning to-vpn-warning/80'
-                  : isTransitioning
-                    ? 'bg-gradient-to-br from-primary/60 to-accent/60 animate-pulse'
-                    : 'bg-gradient-to-br from-muted to-secondary'
+                ? 'vpn-glow'
+                : isTransitioning
+                  ? 'animate-pulse'
+                  : ''
             } ${isTransitioning ? 'opacity-80' : ''}`}
+            style={{
+              background: isConnected
+                ? 'radial-gradient(circle, #2ED39A, #19A979)'
+                : !hasSubscription
+                  ? `linear-gradient(135deg, hsl(38,92%,50%), hsl(38,80%,40%))`
+                  : isTransitioning
+                    ? 'radial-gradient(circle, rgba(46,211,154,0.6), rgba(25,169,121,0.6))'
+                    : 'rgba(30, 70, 130, 0.65)',
+              boxShadow: isConnected ? '0 0 40px rgba(46,211,154,0.45)' : 'none'
+            }}
           >
             <Power className={`w-10 h-10 ${
               isConnected ? 'text-primary-foreground' : 'text-foreground/70'
@@ -188,16 +198,18 @@ const HomeScreen = () => {
           </motion.button>
         </div>
 
-        {/* Action label below */}
-        <p className="mt-4 mb-7 text-xs text-muted-foreground">
-          {!hasSubscription
-            ? 'Нажмите для оформления подписки'
-            : !vpnKey
-              ? 'Нажмите для получения ключа'
-              : isConnected
-                ? 'Нажмите для отключения'
-                : 'Нажмите для подключения'}
-        </p>
+        {/* Action label below - centered between button and cards */}
+        <div className="flex-1 flex items-center justify-center min-h-[48px]">
+          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            {!hasSubscription
+              ? 'Нажмите для оформления подписки'
+              : !vpnKey
+                ? 'Нажмите для получения ключа'
+                : isConnected
+                  ? 'Нажмите для отключения'
+                  : 'Нажмите для подключения'}
+          </p>
+        </div>
       </div>
 
       {/* Info Cards */}
@@ -205,44 +217,44 @@ const HomeScreen = () => {
         {/* Server */}
         <button
           onClick={() => setCurrentScreen('servers')}
-          className="w-full flex items-center justify-between p-4 rounded-xl bg-card glass-border transition-colors hover:bg-secondary"
+          className="w-full flex items-center justify-between p-4 rounded-[18px] card-surface transition-colors hover:bg-white/5"
         >
           <div className="flex items-center gap-3">
             <MapPin className="w-5 h-5 text-primary" />
             <div className="text-left">
-              <p className="text-xs text-muted-foreground">Сервер</p>
-              <p className="text-sm font-medium">
+              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>Сервер</p>
+              <p className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
                 {selectedServer ? `${selectedServer.flag} ${selectedServer.name}` : 'Не выбран'}
               </p>
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-muted-foreground" />
+          <ChevronRight className="w-4 h-4" style={{ color: 'rgba(255,255,255,0.65)' }} />
         </button>
 
         {/* Mode */}
         <button
           onClick={() => setCurrentScreen('settings')}
-          className="w-full flex items-center justify-between p-4 rounded-xl bg-card glass-border transition-colors hover:bg-secondary"
+          className="w-full flex items-center justify-between p-4 rounded-[18px] card-surface transition-colors hover:bg-white/5"
         >
           <div className="flex items-center gap-3">
             <Cpu className="w-5 h-5 text-primary" />
             <div className="text-left">
-              <p className="text-xs text-muted-foreground">Режим</p>
-              <p className="text-sm font-medium">
+              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>Режим</p>
+              <p className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
                 {mode === 'autopilot' ? 'Автопилот' : 'Ручной'} · {scenarioLabels[scenario]}
               </p>
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-muted-foreground" />
+          <ChevronRight className="w-4 h-4" style={{ color: 'rgba(255,255,255,0.65)' }} />
         </button>
 
         {/* Subscription */}
-        <div className="flex items-center justify-between p-4 rounded-xl bg-card glass-border">
+        <div className="flex items-center justify-between p-4 rounded-[18px] card-surface">
           <div className="flex items-center gap-3">
             <CreditCard className="w-5 h-5 text-primary" />
             <div>
-              <p className="text-xs text-muted-foreground">Подписка</p>
-              <p className="text-sm font-medium">
+              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>Подписка</p>
+              <p className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
                 {hasSubscription ? `${daysLeft} дн. осталось` : 'Неактивна'}
               </p>
             </div>
@@ -255,21 +267,26 @@ const HomeScreen = () => {
         </div>
 
         {/* Log */}
-        <div className="flex items-center gap-3 p-4 rounded-xl bg-card glass-border">
-          <Clock className="w-5 h-5 text-muted-foreground shrink-0" />
-          <p className="text-xs text-muted-foreground font-mono truncate">{logMessage}</p>
+        <div className="flex items-center gap-3 p-4 rounded-[18px] card-surface">
+          <Clock className="w-5 h-5 shrink-0" style={{ color: 'rgba(255,255,255,0.65)' }} />
+          <p className="text-xs font-mono truncate" style={{ color: 'rgba(255,255,255,0.65)' }}>{logMessage}</p>
         </div>
       </div>
 
       {/* Bottom Nav */}
-      <div className="fixed bottom-0 left-0 right-0 glass glass-border">
+      <div className="fixed bottom-0 left-0 right-0 z-50" style={{
+        background: 'rgba(20, 50, 100, 0.55)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
+        borderTop: '1px solid rgba(255,255,255,0.06)'
+      }}>
         <div className="flex justify-around py-3 max-w-lg mx-auto">
           <button
             onClick={() => window.open('https://servervpn.store/cabinet/', '_blank')}
             className="flex flex-col items-center gap-1 px-4 py-1"
           >
-            <ExternalLink className="w-5 h-5 text-muted-foreground" />
-            <span className="text-[10px] text-muted-foreground">Кабинет</span>
+            <ExternalLink className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
+            <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Кабинет</span>
           </button>
           <button
             onClick={() => setCurrentScreen('home')}
@@ -282,15 +299,15 @@ const HomeScreen = () => {
             onClick={() => setCurrentScreen('servers')}
             className="flex flex-col items-center gap-1 px-4 py-1"
           >
-            <MapPin className="w-5 h-5 text-muted-foreground" />
-            <span className="text-[10px] text-muted-foreground">Серверы</span>
+            <MapPin className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
+            <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Серверы</span>
           </button>
           <button
             onClick={() => window.open('https://servervpn.store/ru-ru/pricing/', '_blank')}
             className="flex flex-col items-center gap-1 px-4 py-1"
           >
-            <CreditCard className="w-5 h-5 text-muted-foreground" />
-            <span className="text-[10px] text-muted-foreground">Продлить</span>
+            <CreditCard className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
+            <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Продлить</span>
           </button>
         </div>
       </div>
