@@ -39,7 +39,7 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-section-soft">
       <div className="max-w-3xl mx-auto section-padding">
         <div className="text-center mb-14">
           <motion.h2

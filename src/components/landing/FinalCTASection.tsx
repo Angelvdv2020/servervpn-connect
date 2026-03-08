@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 const FinalCTASection = () => {
   return (
-    <section className="py-16 md:py-24 bg-card">
+    <section className="py-16 md:py-24 bg-section-alt relative overflow-hidden">
+      <div className="absolute inset-0 bg-subtle-grid opacity-15 pointer-events-none" />
       <div className="max-w-4xl mx-auto section-padding text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

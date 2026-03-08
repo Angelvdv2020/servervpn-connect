@@ -11,7 +11,8 @@ const platforms = [
 
 const PlatformsSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-card">
+    <section className="py-16 md:py-24 bg-section-alt relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full opacity-30 blur-3xl pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(199 89% 48% / 0.15), transparent 70%)' }} />
       <div className="max-w-7xl mx-auto section-padding text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
