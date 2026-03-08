@@ -52,7 +52,7 @@ const ServersScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-h-[100dvh] bg-background">
+    <div className="flex flex-col h-screen h-[100dvh] bg-background overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 sm:px-5 py-4 border-b border-border bg-card">
         <button
@@ -78,38 +78,40 @@ const ServersScreen = () => {
         </div>
       </div>
 
-      {/* Fast Servers */}
-      {fastServers.length > 0 && (
-        <div className="mb-2">
-          <div className="flex items-center gap-2 px-4 sm:px-5 py-2">
-            <Zap className="w-4 h-4 text-primary" />
-            <h2 className="text-sm font-semibold text-primary uppercase tracking-wider">Быстрые серверы</h2>
+      <div className="flex-1 overflow-y-auto">
+        {/* Fast Servers */}
+        {fastServers.length > 0 && (
+          <div className="mb-2">
+            <div className="flex items-center gap-2 px-4 sm:px-5 py-2">
+              <Zap className="w-4 h-4 text-primary" />
+              <h2 className="text-sm font-semibold text-primary uppercase tracking-wider">Быстрые серверы</h2>
+            </div>
+            <div className="bg-card border-y border-border">
+              {fastServers.map((server, i) => (
+                <ServerRow key={server.id} server={server} index={i} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* All Servers */}
+        <div>
+          <div className="px-4 sm:px-5 py-2">
+            <h2 className="text-sm font-semibold text-primary uppercase tracking-wider">Все серверы</h2>
           </div>
           <div className="bg-card border-y border-border">
-            {fastServers.map((server, i) => (
+            {filtered.map((server, i) => (
               <ServerRow key={server.id} server={server} index={i} />
             ))}
           </div>
         </div>
-      )}
 
-      {/* All Servers */}
-      <div>
-        <div className="px-4 sm:px-5 py-2">
-          <h2 className="text-sm font-semibold text-primary uppercase tracking-wider">Все серверы</h2>
-        </div>
-        <div className="bg-card border-y border-border">
-          {filtered.map((server, i) => (
-            <ServerRow key={server.id} server={server} index={i} />
-          ))}
-        </div>
+        {filtered.length === 0 && (
+          <div className="flex-1 flex items-center justify-center py-12">
+            <p className="text-muted-foreground text-sm">Серверы не найдены</p>
+          </div>
+        )}
       </div>
-
-      {filtered.length === 0 && (
-        <div className="flex-1 flex items-center justify-center">
-          <p className="text-muted-foreground text-sm">Серверы не найдены</p>
-        </div>
-      )}
     </div>
   );
 };

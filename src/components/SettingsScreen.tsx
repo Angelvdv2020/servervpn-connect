@@ -74,7 +74,7 @@ const SettingsScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-h-[100dvh] bg-background">
+    <div className="flex flex-col h-screen h-[100dvh] bg-background overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 sm:px-5 py-4 border-b border-border bg-card">
         <button
@@ -86,7 +86,7 @@ const SettingsScreen = () => {
         <h1 className="text-xl font-bold text-foreground">Настройки</h1>
       </div>
 
-      <div className="px-4 sm:px-5 py-4 space-y-6">
+      <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-4 space-y-6">
         {/* Access section */}
         <section>
           <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Доступ</h2>

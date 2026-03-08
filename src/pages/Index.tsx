@@ -16,7 +16,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background max-w-lg mx-auto relative overflow-hidden sm:max-w-md md:max-w-lg lg:max-w-xl">
+    <div className="h-screen h-[100dvh] overflow-hidden max-w-lg mx-auto relative sm:max-w-md md:max-w-lg lg:max-w-xl">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentScreen}

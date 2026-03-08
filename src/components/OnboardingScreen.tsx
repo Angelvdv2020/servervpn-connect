@@ -18,7 +18,7 @@ const OnboardingScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-h-[100dvh] items-center justify-between px-5 sm:px-6 py-10 sm:py-12 bg-background">
+    <div className="flex flex-col h-screen h-[100dvh] items-center justify-between px-5 sm:px-6 py-10 sm:py-12 bg-background overflow-hidden">
       {/* Logo area */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
