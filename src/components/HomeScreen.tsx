@@ -139,7 +139,7 @@ const HomeScreen = () => {
           </motion.div>
 
         {/* Power button with animated rings */}
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center mt-[10px]">
           {/* Outer pulsing rings */}
           {isConnected && (
             <>
