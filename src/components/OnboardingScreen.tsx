@@ -18,7 +18,7 @@ const OnboardingScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-h-[100dvh] items-center justify-between px-5 sm:px-6 py-10 sm:py-12">
+    <div className="flex flex-col min-h-screen min-h-[100dvh] items-center justify-between px-5 sm:px-6 py-10 sm:py-12 bg-background">
       {/* Logo area */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -35,7 +35,7 @@ const OnboardingScreen = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        className="w-full max-w-sm space-y-4"
+        className="w-full max-w-sm space-y-3"
       >
         {features.map((f, i) => (
           <motion.div
@@ -43,13 +43,13 @@ const OnboardingScreen = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 + i * 0.15 }}
-            className="flex items-center gap-4 p-4 rounded-xl bg-card glass-border"
+            className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border"
           >
             <div className="w-10 h-10 rounded-lg vpn-gradient flex items-center justify-center shrink-0">
-              <f.icon className="w-5 h-5 text-primary-foreground" />
+              <f.icon className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="font-semibold text-sm">{f.title}</p>
+              <p className="font-semibold text-sm text-foreground">{f.title}</p>
               <p className="text-muted-foreground text-xs">{f.desc}</p>
             </div>
           </motion.div>
@@ -65,7 +65,7 @@ const OnboardingScreen = () => {
       >
         <button
           onClick={handleStart}
-          className="w-full py-4 rounded-2xl vpn-gradient text-primary-foreground font-semibold text-lg vpn-glow-sm transition-all hover:opacity-90 active:scale-[0.98]"
+          className="w-full py-4 rounded-2xl vpn-gradient text-white font-semibold text-lg vpn-glow-sm transition-all hover:opacity-90 active:scale-[0.98]"
         >
           Начать
         </button>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Key, ClipboardPaste, Cpu, Globe, Settings2 } from 'lucide-react';
+import { ArrowLeft, Key, ClipboardPaste, Cpu, Globe, ChevronRight } from 'lucide-react';
 import { useAppStore, type AppMode, type Scenario } from '@/store/appStore';
 import { toast } from 'sonner';
 
@@ -74,86 +74,85 @@ const SettingsScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-h-[100dvh] px-4 sm:px-5 pt-6 pb-6">
+    <div className="flex flex-col min-h-screen min-h-[100dvh] bg-background">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 px-4 sm:px-5 py-4 border-b border-border bg-card">
         <button
           onClick={() => setCurrentScreen('home')}
-          className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center"
+          className="w-9 h-9 rounded-xl flex items-center justify-center active:opacity-70"
         >
-          <ArrowLeft className="w-4 h-4 text-secondary-foreground" />
+          <ArrowLeft className="w-5 h-5 text-foreground" />
         </button>
-        <h1 className="text-xl font-bold">Настройки</h1>
+        <h1 className="text-xl font-bold text-foreground">Настройки</h1>
       </div>
 
-      <div className="space-y-6">
+      <div className="px-4 sm:px-5 py-4 space-y-6">
         {/* Access section */}
         <section>
-          <div className="flex items-center gap-2 mb-3">
-            <Settings2 className="w-4 h-4 text-primary" />
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Доступ</h2>
-          </div>
+          <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Доступ</h2>
 
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs text-muted-foreground mb-1 block">Base URL</label>
+          <div className="card-surface overflow-hidden">
+            <div className="px-4 py-3 list-separator">
+              <label className="text-xs text-muted-foreground mb-1.5 block">Base URL</label>
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
                   placeholder="https://servervpn.store"
-                  className="flex-1 px-3 py-2.5 rounded-xl bg-card glass-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="flex-1 px-3 py-2.5 rounded-lg bg-secondary text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
                 <button
                   onClick={handleSaveUrl}
-                  className="px-4 py-2.5 rounded-xl bg-secondary text-sm font-medium text-secondary-foreground"
+                  className="px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium"
                 >
                   ОК
                 </button>
               </div>
             </div>
 
-            <div>
-              <label className="text-xs text-muted-foreground mb-1 block">Session / Bearer Token</label>
+            <div className="px-4 py-3 list-separator">
+              <label className="text-xs text-muted-foreground mb-1.5 block">Session / Bearer Token</label>
               <div className="flex gap-2">
                 <input
                   type="password"
                   value={tokenInput}
                   onChange={(e) => setTokenInput(e.target.value)}
                   placeholder="Вставьте токен..."
-                  className="flex-1 px-3 py-2.5 rounded-xl bg-card glass-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="flex-1 px-3 py-2.5 rounded-lg bg-secondary text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
                 <button
                   onClick={handleSaveToken}
-                  className="px-4 py-2.5 rounded-xl bg-secondary text-sm font-medium text-secondary-foreground"
+                  className="px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium"
                 >
                   ОК
                 </button>
               </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 p-4">
               <button
                 onClick={handleGetKey}
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl vpn-gradient text-primary-foreground text-sm font-medium"
+                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl vpn-gradient text-white text-sm font-medium active:opacity-80"
               >
                 <Key className="w-4 h-4" />
                 Получить ключ
               </button>
               <button
                 onClick={handlePaste}
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-secondary text-secondary-foreground text-sm font-medium"
+                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-secondary text-secondary-foreground text-sm font-medium active:opacity-80"
               >
                 <ClipboardPaste className="w-4 h-4" />
-                Вставить ссылку
+                Вставить
               </button>
             </div>
 
             {vpnKey && (
-              <div className="p-3 rounded-xl bg-primary/5 border border-primary/20">
-                <p className="text-xs text-muted-foreground mb-1">Текущий ключ</p>
-                <p className="text-xs font-mono text-foreground truncate">{vpnKey}</p>
+              <div className="px-4 pb-4">
+                <div className="p-3 rounded-lg bg-primary/5 border border-primary/15">
+                  <p className="text-xs text-muted-foreground mb-1">Текущий ключ</p>
+                  <p className="text-xs font-mono text-foreground truncate">{vpnKey}</p>
+                </div>
               </div>
             )}
           </div>
@@ -161,23 +160,24 @@ const SettingsScreen = () => {
 
         {/* Mode */}
         <section>
-          <div className="flex items-center gap-2 mb-3">
-            <Cpu className="w-4 h-4 text-primary" />
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Режим</h2>
-          </div>
+          <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Режим</h2>
 
-          <div className="flex gap-2 mb-4">
-            {(['autopilot', 'manual'] as AppMode[]).map((m) => (
+          <div className="card-surface overflow-hidden">
+            {(['autopilot', 'manual'] as AppMode[]).map((m, i) => (
               <button
                 key={m}
                 onClick={() => setMode(m)}
-                className={`flex-1 py-3 rounded-xl text-sm font-medium transition-all ${
-                  mode === m
-                    ? 'vpn-gradient text-primary-foreground vpn-glow-sm'
-                    : 'bg-card glass-border text-muted-foreground'
-                }`}
+                className={`w-full flex items-center justify-between px-4 py-3.5 transition-colors active:bg-secondary/50 ${
+                  i < 1 ? 'list-separator' : ''
+                } ${mode === m ? 'bg-primary/5' : ''}`}
               >
-                {m === 'autopilot' ? 'Автопилот' : 'Ручной'}
+                <div className="flex items-center gap-3">
+                  <Cpu className="w-4 h-4 text-primary" />
+                  <span className="text-sm text-foreground">{m === 'autopilot' ? 'Автопилот' : 'Ручной'}</span>
+                </div>
+                {mode === m && (
+                  <span className="text-xs text-primary font-medium">Выбран</span>
+                )}
               </button>
             ))}
           </div>
@@ -185,26 +185,25 @@ const SettingsScreen = () => {
 
         {/* Scenario */}
         <section>
-          <div className="flex items-center gap-2 mb-3">
-            <Globe className="w-4 h-4 text-primary" />
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Сценарий</h2>
-          </div>
+          <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Сценарий</h2>
 
-          <div className="grid grid-cols-2 gap-2">
-            {scenarios.map((s) => (
-              <motion.button
+          <div className="card-surface overflow-hidden">
+            {scenarios.map((s, i) => (
+              <button
                 key={s.id}
-                whileTap={{ scale: 0.97 }}
                 onClick={() => setScenario(s.id)}
-                className={`flex items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all ${
-                  scenario === s.id
-                    ? 'bg-primary/10 border border-primary/30 text-foreground'
-                    : 'bg-card glass-border text-muted-foreground'
-                }`}
+                className={`w-full flex items-center justify-between px-4 py-3.5 transition-colors active:bg-secondary/50 ${
+                  i < scenarios.length - 1 ? 'list-separator' : ''
+                } ${scenario === s.id ? 'bg-primary/5' : ''}`}
               >
-                <span className="text-lg">{s.icon}</span>
-                {s.label}
-              </motion.button>
+                <div className="flex items-center gap-3">
+                  <span className="text-lg">{s.icon}</span>
+                  <span className="text-sm text-foreground">{s.label}</span>
+                </div>
+                {scenario === s.id && (
+                  <span className="text-xs text-primary font-medium">Выбран</span>
+                )}
+              </button>
             ))}
           </div>
         </section>
