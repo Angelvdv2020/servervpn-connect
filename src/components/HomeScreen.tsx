@@ -100,8 +100,7 @@ const HomeScreen = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <Shield className="w-6 h-6 text-primary" />
-          <span className="font-bold text-lg">ServerVPN</span>
+          <img src={noryxLogo} alt="NORYX" className="h-8 object-contain" />
         </div>
         <button
           onClick={handleRefresh}
