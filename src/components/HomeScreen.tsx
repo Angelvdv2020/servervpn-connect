@@ -120,9 +120,9 @@ const HomeScreen = () => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="mb-2"
+            className="mb-1"
           >
-            <span className="text-3xl font-mono font-semibold tracking-wider">
+            <span className="text-2xl font-mono font-semibold tracking-wider">
               {formatTime(connectionTime)}
             </span>
           </motion.div>
