@@ -96,11 +96,11 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen px-5 pt-6 pb-24">
+    <div className="flex flex-col min-h-screen px-5 pt-4 pb-24">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <img src={noryxLogo} alt="NORYX" className="w-56 object-contain" />
+          <img src={noryxLogo} alt="NORYX" className="w-64 object-contain" />
         </div>
         <button
           onClick={handleRefresh}
@@ -111,7 +111,7 @@ const HomeScreen = () => {
       </div>
 
       {/* Animated Power Button */}
-      <div className="flex flex-col items-center my-8">
+      <div className="flex flex-col items-center my-4">
         {/* Status text */}
         <AnimatePresence mode="wait">
           <motion.div
