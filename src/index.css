@@ -132,4 +132,16 @@
       linear-gradient(90deg, hsl(210 18% 90% / 0.5) 1px, transparent 1px);
     background-size: 60px 60px;
   }
+
+  .bg-section-alt {
+    background: linear-gradient(180deg, hsl(210 25% 97%), hsl(200 20% 96%));
+  }
+
+  .bg-section-accent {
+    background: linear-gradient(135deg, hsl(199 89% 48% / 0.04), hsl(174 58% 50% / 0.04));
+  }
+
+  .bg-section-soft {
+    background: hsl(210 20% 97%);
+  }
 }

@@ -10,7 +10,8 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-section-soft relative overflow-hidden">
+      <div className="absolute inset-0 bg-subtle-grid opacity-20 pointer-events-none" />
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-14">
           <motion.h2

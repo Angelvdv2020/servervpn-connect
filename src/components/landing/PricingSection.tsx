@@ -31,7 +31,8 @@ const plans = [
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-16 md:py-24 bg-card">
+    <section id="pricing" className="py-16 md:py-24 bg-section-alt relative overflow-hidden">
+      <div className="absolute top-10 left-0 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(199 89% 48% / 0.12), transparent 70%)' }} />
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-14">
           <motion.h2

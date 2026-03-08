@@ -12,7 +12,7 @@ const items = [
 
 const TrustSection = () => {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto section-padding">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>

@@ -38,7 +38,8 @@ const scenarios = [
 
 const ScenariosSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-card">
+    <section className="py-16 md:py-24 bg-section-accent relative overflow-hidden">
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(174 58% 50% / 0.2), transparent 70%)' }} />
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-14">
           <motion.h2

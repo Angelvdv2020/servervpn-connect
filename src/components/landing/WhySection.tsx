@@ -36,7 +36,7 @@ const reasons = [
 
 const WhySection = () => {
   return (
-    <section id="features" className="py-16 md:py-24">
+    <section id="features" className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-14">
           <motion.h2
