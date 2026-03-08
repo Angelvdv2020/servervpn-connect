@@ -54,7 +54,7 @@ const ServersScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen px-5 pt-6 pb-6">
+    <div className="flex flex-col min-h-screen min-h-[100dvh] px-4 sm:px-5 pt-6 pb-6">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <button

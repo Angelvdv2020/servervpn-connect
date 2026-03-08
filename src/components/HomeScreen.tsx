@@ -278,33 +278,34 @@ const HomeScreen = () => {
         background: 'rgba(20, 50, 100, 0.55)',
         backdropFilter: 'blur(18px)',
         WebkitBackdropFilter: 'blur(18px)',
-        borderTop: '1px solid rgba(255,255,255,0.06)'
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        paddingBottom: 'env(safe-area-inset-bottom)'
       }}>
-        <div className="flex justify-around py-3 max-w-lg mx-auto">
+        <div className="flex justify-around py-3 max-w-lg lg:max-w-xl mx-auto">
           <button
             onClick={() => window.open('https://servervpn.store/cabinet/', '_blank')}
-            className="flex flex-col items-center gap-1 px-4 py-1"
+            className="flex flex-col items-center gap-1 px-4 py-1 active:opacity-70 transition-opacity"
           >
             <ExternalLink className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
             <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Кабинет</span>
           </button>
           <button
             onClick={() => setCurrentScreen('home')}
-            className="flex flex-col items-center gap-1 px-4 py-1"
+            className="flex flex-col items-center gap-1 px-4 py-1 active:opacity-70 transition-opacity"
           >
             <Power className="w-5 h-5 text-primary" />
             <span className="text-[10px] text-primary font-medium">VPN</span>
           </button>
           <button
             onClick={() => setCurrentScreen('servers')}
-            className="flex flex-col items-center gap-1 px-4 py-1"
+            className="flex flex-col items-center gap-1 px-4 py-1 active:opacity-70 transition-opacity"
           >
             <MapPin className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
             <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Серверы</span>
           </button>
           <button
             onClick={() => window.open('https://servervpn.store/ru-ru/pricing/', '_blank')}
-            className="flex flex-col items-center gap-1 px-4 py-1"
+            className="flex flex-col items-center gap-1 px-4 py-1 active:opacity-70 transition-opacity"
           >
             <CreditCard className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
             <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Продлить</span>
