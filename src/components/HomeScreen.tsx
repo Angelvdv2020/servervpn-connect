@@ -96,11 +96,11 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen px-5 pt-6 pb-24">
+    <div className="flex flex-col min-h-screen px-5 pt-4 pb-24">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <img src={noryxLogo} alt="NORYX" className="w-56 object-contain" />
+          <img src={noryxLogo} alt="NORYX" className="w-64 object-contain" />
         </div>
         <button
           onClick={handleRefresh}
@@ -111,7 +111,7 @@ const HomeScreen = () => {
       </div>
 
       {/* Animated Power Button */}
-      <div className="flex flex-col items-center my-8">
+      <div className="flex flex-col items-center my-4">
         {/* Status text */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -128,15 +128,15 @@ const HomeScreen = () => {
           </motion.div>
         </AnimatePresence>
 
-        <motion.div
-          className={`text-sm font-medium mb-6 px-4 py-1 rounded-full ${
-            isConnected
-              ? 'text-primary bg-primary/15 vpn-text-glow'
-              : 'text-muted-foreground bg-muted/40'
-          }`}
-        >
-          {isConnected ? 'Подключено' : isTransitioning ? 'Подключение...' : 'Отключено'}
-        </motion.div>
+          <motion.div
+            className={`text-sm font-medium mb-4 px-4 py-1 rounded-full ${
+              isConnected
+                ? 'text-primary bg-primary/15 vpn-text-glow'
+                : 'text-muted-foreground bg-muted/40'
+            }`}
+          >
+            {isConnected ? 'Подключено' : isTransitioning ? 'Подключение...' : 'Отключено'}
+          </motion.div>
 
         {/* Power button with animated rings */}
         <div className="relative flex items-center justify-center">
@@ -189,7 +189,7 @@ const HomeScreen = () => {
         </div>
 
         {/* Action label below */}
-        <p className="mt-6 text-xs text-muted-foreground">
+        <p className="mt-4 text-xs text-muted-foreground">
           {!hasSubscription
             ? 'Нажмите для оформления подписки'
             : !vpnKey
