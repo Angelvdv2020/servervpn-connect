@@ -96,7 +96,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen px-5 pt-4 pb-24 metallic-noise relative z-10">
+    <div className="flex flex-col min-h-screen min-h-[100dvh] px-4 sm:px-5 pt-4 pb-24 metallic-noise relative z-10">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
