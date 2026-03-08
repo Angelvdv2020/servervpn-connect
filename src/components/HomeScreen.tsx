@@ -100,7 +100,7 @@ const HomeScreen = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <img src={noryxLogo} alt="NORYX" className="h-8 object-contain" />
+          <img src={noryxLogo} alt="NORYX" className="h-12 object-contain" />
         </div>
         <button
           onClick={handleRefresh}
@@ -110,65 +110,94 @@ const HomeScreen = () => {
         </button>
       </div>
 
-      {/* Connection Status Ring */}
+      {/* Animated Power Button */}
       <div className="flex flex-col items-center my-8">
-        <motion.div
-          className={`relative w-48 h-48 rounded-full flex items-center justify-center ${
-            isConnected ? 'animate-pulse-glow' : ''
-          }`}
-          style={{
-            background: `radial-gradient(circle, hsl(var(--vpn-surface)) 60%, transparent 70%)`,
-          }}
-        >
-          {/* Outer ring */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 192 192">
-            <circle
-              cx="96" cy="96" r="90"
-              fill="none"
-              stroke={isConnected ? 'hsl(var(--vpn-connected))' : 'hsl(var(--border))'}
-              strokeWidth="3"
-              strokeDasharray={isConnected ? "565" : "8 8"}
-              opacity={isConnected ? 0.6 : 0.3}
-            />
-          </svg>
-
-          <div className="flex flex-col items-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={vpnStatus}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className={`text-sm font-medium mb-1 ${
-                  isConnected ? 'text-primary vpn-text-glow' : 'text-muted-foreground'
-                }`}
-              >
-                {isConnected ? 'ПОДКЛЮЧЕНО' : isTransitioning ? '...' : 'ОТКЛЮЧЕНО'}
-              </motion.div>
-            </AnimatePresence>
-
+        {/* Status text */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={vpnStatus}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="mb-2"
+          >
             <span className="text-3xl font-mono font-semibold tracking-wider">
               {formatTime(connectionTime)}
             </span>
-          </div>
+          </motion.div>
+        </AnimatePresence>
+
+        <motion.div
+          className={`text-sm font-medium mb-6 px-4 py-1 rounded-full ${
+            isConnected
+              ? 'text-primary bg-primary/15 vpn-text-glow'
+              : 'text-muted-foreground bg-muted/40'
+          }`}
+        >
+          {isConnected ? 'Подключено' : isTransitioning ? 'Подключение...' : 'Отключено'}
         </motion.div>
 
-        {/* Main Action Button */}
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          onClick={handleMainAction}
-          disabled={isTransitioning}
-          className={`mt-8 w-full max-w-xs py-4 rounded-2xl font-semibold text-base transition-all ${
-            isConnected
-              ? 'bg-destructive text-destructive-foreground vpn-glow-danger'
-              : !hasSubscription
-                ? 'bg-vpn-warning text-primary-foreground'
-                : 'vpn-gradient text-primary-foreground vpn-glow-sm'
-          } ${isTransitioning ? 'opacity-60' : 'active:scale-[0.97]'}`}
-        >
-          {getMainButtonLabel()}
-        </motion.button>
+        {/* Power button with animated rings */}
+        <div className="relative flex items-center justify-center">
+          {/* Outer pulsing rings */}
+          {isConnected && (
+            <>
+              <motion.div
+                className="absolute w-52 h-52 rounded-full border-2 border-primary/20"
+                animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0, 0.3] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.div
+                className="absolute w-44 h-44 rounded-full border-2 border-primary/30"
+                animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.1, 0.4] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+              />
+            </>
+          )}
+
+          {/* Static ring */}
+          <div className={`absolute w-40 h-40 rounded-full border-2 ${
+            isConnected ? 'border-primary/40' : 'border-muted-foreground/15'
+          }`} />
+
+          {/* Inner glow ring */}
+          <div className={`absolute w-36 h-36 rounded-full ${
+            isConnected ? 'bg-primary/10' : 'bg-muted/20'
+          }`} />
+
+          {/* Main power button */}
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            onClick={handleMainAction}
+            disabled={isTransitioning}
+            className={`relative w-28 h-28 rounded-full flex items-center justify-center transition-all shadow-2xl ${
+              isConnected
+                ? 'bg-gradient-to-br from-primary to-accent vpn-glow'
+                : !hasSubscription
+                  ? 'bg-gradient-to-br from-vpn-warning to-vpn-warning/80'
+                  : isTransitioning
+                    ? 'bg-gradient-to-br from-primary/60 to-accent/60 animate-pulse'
+                    : 'bg-gradient-to-br from-muted to-secondary'
+            } ${isTransitioning ? 'opacity-80' : ''}`}
+          >
+            <Power className={`w-10 h-10 ${
+              isConnected ? 'text-primary-foreground' : 'text-foreground/70'
+            }`} />
+          </motion.button>
+        </div>
+
+        {/* Action label below */}
+        <p className="mt-6 text-xs text-muted-foreground">
+          {!hasSubscription
+            ? 'Нажмите для оформления подписки'
+            : !vpnKey
+              ? 'Нажмите для получения ключа'
+              : isConnected
+                ? 'Нажмите для отключения'
+                : 'Нажмите для подключения'}
+        </p>
       </div>
 
       {/* Info Cards */}
