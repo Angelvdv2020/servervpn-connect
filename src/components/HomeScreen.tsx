@@ -5,6 +5,7 @@ import {
   Clock, MapPin, Cpu, CreditCard
 } from 'lucide-react';
 import { useAppStore } from '@/store/appStore';
+import noryxLogo from '@/assets/noryx-logo.png';
 
 const formatTime = (seconds: number) => {
   const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
