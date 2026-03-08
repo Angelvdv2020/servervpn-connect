@@ -189,7 +189,7 @@ const HomeScreen = () => {
         </div>
 
         {/* Action label below */}
-        <p className="mt-4 text-xs text-muted-foreground">
+        <p className="mt-4 mb-7 text-xs text-muted-foreground">
           {!hasSubscription
             ? 'Нажмите для оформления подписки'
             : !vpnKey
