@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Shield, Zap, Globe } from 'lucide-react';
 import { useAppStore } from '@/store/appStore';
+import noryxLogo from '@/assets/noryx-logo.png';
 
 const features = [
   { icon: Shield, title: 'Безопасность', desc: 'Защита данных по протоколу VLESS' },
