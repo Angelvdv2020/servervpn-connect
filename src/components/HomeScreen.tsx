@@ -128,15 +128,15 @@ const HomeScreen = () => {
           </motion.div>
         </AnimatePresence>
 
-        <motion.div
-          className={`text-sm font-medium mb-6 px-4 py-1 rounded-full ${
-            isConnected
-              ? 'text-primary bg-primary/15 vpn-text-glow'
-              : 'text-muted-foreground bg-muted/40'
-          }`}
-        >
-          {isConnected ? 'Подключено' : isTransitioning ? 'Подключение...' : 'Отключено'}
-        </motion.div>
+          <motion.div
+            className={`text-sm font-medium mb-4 px-4 py-1 rounded-full ${
+              isConnected
+                ? 'text-primary bg-primary/15 vpn-text-glow'
+                : 'text-muted-foreground bg-muted/40'
+            }`}
+          >
+            {isConnected ? 'Подключено' : isTransitioning ? 'Подключение...' : 'Отключено'}
+          </motion.div>
 
         {/* Power button with animated rings */}
         <div className="relative flex items-center justify-center">
