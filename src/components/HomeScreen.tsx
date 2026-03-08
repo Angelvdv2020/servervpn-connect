@@ -96,7 +96,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen px-5 pt-4 pb-24">
+    <div className="flex flex-col min-h-screen px-5 pt-4 pb-24 metallic-noise relative z-10">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -104,9 +104,9 @@ const HomeScreen = () => {
         </div>
         <button
           onClick={handleRefresh}
-          className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center"
+          className="w-9 h-9 rounded-xl card-surface flex items-center justify-center"
         >
-          <RefreshCw className={`w-4 h-4 text-secondary-foreground ${isRefreshing ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-4 h-4 text-foreground/70 ${isRefreshing ? 'animate-spin' : ''}`} />
         </button>
       </div>
 
