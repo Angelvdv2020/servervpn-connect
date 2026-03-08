@@ -213,63 +213,55 @@ const HomeScreen = () => {
       </div>
 
       {/* Info Cards */}
-      <div className="space-y-3">
+      <div className="space-y-2">
         {/* Server */}
         <button
           onClick={() => setCurrentScreen('servers')}
-          className="w-full flex items-center justify-between p-4 rounded-[18px] card-surface transition-colors hover:bg-white/5"
+          className="w-full flex items-center justify-between px-2 py-2 transition-opacity active:opacity-70"
         >
-          <div className="flex items-center gap-3">
-            <MapPin className="w-5 h-5 text-primary" />
-            <div className="text-left">
-              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>Сервер</p>
-              <p className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
-                {selectedServer ? `${selectedServer.flag} ${selectedServer.name}` : 'Не выбран'}
-              </p>
-            </div>
+          <div className="flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-primary" />
+            <span className="text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>Сервер</span>
+            <span className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
+              {selectedServer ? `${selectedServer.flag} ${selectedServer.name}` : 'Не выбран'}
+            </span>
           </div>
-          <ChevronRight className="w-4 h-4" style={{ color: 'rgba(255,255,255,0.65)' }} />
+          <ChevronRight className="w-3.5 h-3.5" style={{ color: 'rgba(255,255,255,0.4)' }} />
         </button>
 
         {/* Mode */}
         <button
           onClick={() => setCurrentScreen('settings')}
-          className="w-full flex items-center justify-between p-4 rounded-[18px] card-surface transition-colors hover:bg-white/5"
+          className="w-full flex items-center justify-between px-2 py-2 transition-opacity active:opacity-70"
         >
-          <div className="flex items-center gap-3">
-            <Cpu className="w-5 h-5 text-primary" />
-            <div className="text-left">
-              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>Режим</p>
-              <p className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
-                {mode === 'autopilot' ? 'Автопилот' : 'Ручной'} · {scenarioLabels[scenario]}
-              </p>
-            </div>
+          <div className="flex items-center gap-2">
+            <Cpu className="w-4 h-4 text-primary" />
+            <span className="text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>Режим</span>
+            <span className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
+              {mode === 'autopilot' ? 'Автопилот' : 'Ручной'} · {scenarioLabels[scenario]}
+            </span>
           </div>
-          <ChevronRight className="w-4 h-4" style={{ color: 'rgba(255,255,255,0.65)' }} />
+          <ChevronRight className="w-3.5 h-3.5" style={{ color: 'rgba(255,255,255,0.4)' }} />
         </button>
 
         {/* Subscription */}
-        <div className="flex items-center justify-between p-4 rounded-[18px] card-surface">
-          <div className="flex items-center gap-3">
-            <CreditCard className="w-5 h-5 text-primary" />
-            <div>
-              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>Подписка</p>
-              <p className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
-                {hasSubscription ? `${daysLeft} дн. осталось` : 'Неактивна'}
-              </p>
-            </div>
+        <div className="flex items-center justify-between px-2 py-2">
+          <div className="flex items-center gap-2">
+            <CreditCard className="w-4 h-4 text-primary" />
+            <span className="text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>Подписка</span>
+            <span className="text-sm font-medium" style={{ color: '#EAF4FF' }}>
+              {hasSubscription ? `${daysLeft} дн.` : 'Неактивна'}
+            </span>
           </div>
           {!hasSubscription && (
-            <span className="text-xs text-vpn-warning font-medium px-2 py-1 rounded-md bg-vpn-warning/10">
-              Требуется
-            </span>
+            <span className="text-xs text-vpn-warning font-medium">Требуется</span>
           )}
         </div>
 
         {/* Log */}
-        <div className="flex items-center gap-3 p-4 rounded-[18px] card-surface">
-          <Clock className="w-5 h-5 shrink-0" style={{ color: 'rgba(255,255,255,0.65)' }} />
-          <p className="text-xs font-mono truncate" style={{ color: 'rgba(255,255,255,0.65)' }}>{logMessage}</p>
+        <div className="flex items-center gap-2 px-2 py-2">
+          <Clock className="w-3.5 h-3.5 shrink-0" style={{ color: 'rgba(255,255,255,0.4)' }} />
+          <p className="text-xs font-mono truncate" style={{ color: 'rgba(255,255,255,0.5)' }}>{logMessage}</p>
         </div>
       </div>
 
