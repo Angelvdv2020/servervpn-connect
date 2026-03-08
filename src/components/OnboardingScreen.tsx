@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Shield, Zap, Globe } from 'lucide-react';
 import { useAppStore } from '@/store/appStore';
+import noryxLogo from '@/assets/noryx-logo.png';
 
 const features = [
   { icon: Shield, title: 'Безопасность', desc: 'Защита данных по протоколу VLESS' },
@@ -25,15 +26,7 @@ const OnboardingScreen = () => {
         transition={{ duration: 0.8 }}
         className="flex flex-col items-center pt-8"
       >
-        <div className="relative mb-6">
-          <div className="w-24 h-24 rounded-3xl vpn-gradient flex items-center justify-center vpn-glow">
-            <Shield className="w-12 h-12 text-primary-foreground" />
-          </div>
-          <div className="absolute inset-0 w-24 h-24 rounded-3xl animate-orbit opacity-20">
-            <div className="w-3 h-3 rounded-full bg-primary absolute -top-1 left-1/2" />
-          </div>
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight">ServerVPN</h1>
+        <img src={noryxLogo} alt="NORYX" className="h-16 object-contain mb-4" />
         <p className="text-muted-foreground mt-2 text-sm">Безопасный доступ в интернет</p>
       </motion.div>
 

@@ -5,6 +5,7 @@ import {
   Clock, MapPin, Cpu, CreditCard
 } from 'lucide-react';
 import { useAppStore } from '@/store/appStore';
+import noryxLogo from '@/assets/noryx-logo.png';
 
 const formatTime = (seconds: number) => {
   const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
@@ -99,8 +100,7 @@ const HomeScreen = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <Shield className="w-6 h-6 text-primary" />
-          <span className="font-bold text-lg">ServerVPN</span>
+          <img src={noryxLogo} alt="NORYX" className="h-8 object-contain" />
         </div>
         <button
           onClick={handleRefresh}
