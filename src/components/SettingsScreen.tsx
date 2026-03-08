@@ -86,7 +86,7 @@ const SettingsScreen = () => {
         <h1 className="text-xl font-bold text-foreground">Настройки</h1>
       </div>
 
-      <div className="px-4 sm:px-5 py-4 space-y-6">
+      <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-4 space-y-6">
         {/* Access section */}
         <section>
           <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Доступ</h2>
