@@ -111,7 +111,7 @@ const HomeScreen = () => {
       </div>
 
       {/* Animated Power Button */}
-      <div className="flex flex-col items-center my-4">
+      <div className="flex flex-col items-center mt-2">
         {/* Status text */}
         <AnimatePresence mode="wait">
           <motion.div
