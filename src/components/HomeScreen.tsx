@@ -274,14 +274,19 @@ const HomeScreen = () => {
       </div>
 
       {/* Bottom Nav */}
-      <div className="fixed bottom-0 left-0 right-0 glass glass-border">
+      <div className="fixed bottom-0 left-0 right-0 z-50" style={{
+        background: 'rgba(20, 50, 100, 0.55)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
+        borderTop: '1px solid rgba(255,255,255,0.06)'
+      }}>
         <div className="flex justify-around py-3 max-w-lg mx-auto">
           <button
             onClick={() => window.open('https://servervpn.store/cabinet/', '_blank')}
             className="flex flex-col items-center gap-1 px-4 py-1"
           >
-            <ExternalLink className="w-5 h-5 text-muted-foreground" />
-            <span className="text-[10px] text-muted-foreground">Кабинет</span>
+            <ExternalLink className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
+            <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Кабинет</span>
           </button>
           <button
             onClick={() => setCurrentScreen('home')}
@@ -294,15 +299,15 @@ const HomeScreen = () => {
             onClick={() => setCurrentScreen('servers')}
             className="flex flex-col items-center gap-1 px-4 py-1"
           >
-            <MapPin className="w-5 h-5 text-muted-foreground" />
-            <span className="text-[10px] text-muted-foreground">Серверы</span>
+            <MapPin className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
+            <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Серверы</span>
           </button>
           <button
             onClick={() => window.open('https://servervpn.store/ru-ru/pricing/', '_blank')}
             className="flex flex-col items-center gap-1 px-4 py-1"
           >
-            <CreditCard className="w-5 h-5 text-muted-foreground" />
-            <span className="text-[10px] text-muted-foreground">Продлить</span>
+            <CreditCard className="w-5 h-5" style={{ color: 'rgba(255,255,255,0.65)' }} />
+            <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.65)' }}>Продлить</span>
           </button>
         </div>
       </div>
