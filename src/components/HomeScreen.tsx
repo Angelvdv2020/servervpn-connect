@@ -86,7 +86,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-h-[100dvh] px-4 sm:px-5 pt-4 pb-24 relative z-10 bg-background">
+    <div className="flex flex-col h-screen h-[100dvh] px-4 sm:px-5 pt-4 pb-24 relative z-10 bg-background overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <button

@@ -52,7 +52,7 @@ const ServersScreen = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-h-[100dvh] bg-background">
+    <div className="flex flex-col h-screen h-[100dvh] bg-background overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 sm:px-5 py-4 border-b border-border bg-card">
         <button
