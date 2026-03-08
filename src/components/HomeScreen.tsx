@@ -198,16 +198,18 @@ const HomeScreen = () => {
           </motion.button>
         </div>
 
-        {/* Action label below */}
-        <p className="mt-4 mb-7 text-xs text-muted-foreground">
-          {!hasSubscription
-            ? 'Нажмите для оформления подписки'
-            : !vpnKey
-              ? 'Нажмите для получения ключа'
-              : isConnected
-                ? 'Нажмите для отключения'
-                : 'Нажмите для подключения'}
-        </p>
+        {/* Action label below - centered between button and cards */}
+        <div className="flex-1 flex items-center justify-center min-h-[48px]">
+          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            {!hasSubscription
+              ? 'Нажмите для оформления подписки'
+              : !vpnKey
+                ? 'Нажмите для получения ключа'
+                : isConnected
+                  ? 'Нажмите для отключения'
+                  : 'Нажмите для подключения'}
+          </p>
+        </div>
       </div>
 
       {/* Info Cards */}
