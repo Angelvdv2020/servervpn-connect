@@ -129,7 +129,7 @@ const HomeScreen = () => {
         </AnimatePresence>
 
           <motion.div
-            className={`text-sm font-medium mb-4 px-4 py-1 rounded-full ${
+            className={`text-sm font-medium mb-[14px] px-4 py-1 rounded-full ${
               isConnected
                 ? 'text-primary bg-primary/15 vpn-text-glow'
                 : 'text-muted-foreground bg-muted/40'
