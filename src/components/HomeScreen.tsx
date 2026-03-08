@@ -111,7 +111,7 @@ const HomeScreen = () => {
       </div>
 
       {/* Animated Power Button */}
-      <div className="flex flex-col items-center my-4">
+      <div className="flex flex-col items-center mt-2">
         {/* Status text */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -120,7 +120,7 @@ const HomeScreen = () => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="mb-1"
+            className="mb-2"
           >
             <span className="text-2xl font-mono font-semibold tracking-wider">
               {formatTime(connectionTime)}
@@ -129,7 +129,7 @@ const HomeScreen = () => {
         </AnimatePresence>
 
           <motion.div
-            className={`text-sm font-medium mb-4 px-4 py-1 rounded-full ${
+            className={`text-sm font-medium mb-[14px] px-4 py-1 rounded-full ${
               isConnected
                 ? 'text-primary bg-primary/15 vpn-text-glow'
                 : 'text-muted-foreground bg-muted/40'
@@ -139,7 +139,7 @@ const HomeScreen = () => {
           </motion.div>
 
         {/* Power button with animated rings */}
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center mt-[10px]">
           {/* Outer pulsing rings */}
           {isConnected && (
             <>
@@ -189,7 +189,7 @@ const HomeScreen = () => {
         </div>
 
         {/* Action label below */}
-        <p className="mt-4 text-xs text-muted-foreground">
+        <p className="mt-4 mb-7 text-xs text-muted-foreground">
           {!hasSubscription
             ? 'Нажмите для оформления подписки'
             : !vpnKey
