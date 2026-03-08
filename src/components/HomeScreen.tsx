@@ -144,12 +144,14 @@ const HomeScreen = () => {
           {isConnected && (
             <>
               <motion.div
-                className="absolute w-52 h-52 rounded-full border-2 border-primary/20"
+                className="absolute w-52 h-52 rounded-full"
+                style={{ border: '2px solid rgba(46,211,154,0.35)' }}
                 animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0, 0.3] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
               />
               <motion.div
-                className="absolute w-44 h-44 rounded-full border-2 border-primary/30"
+                className="absolute w-44 h-44 rounded-full"
+                style={{ border: '2px solid rgba(46,211,154,0.35)' }}
                 animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.1, 0.4] }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
               />
@@ -157,13 +159,13 @@ const HomeScreen = () => {
           )}
 
           {/* Static ring */}
-          <div className={`absolute w-40 h-40 rounded-full border-2 ${
-            isConnected ? 'border-primary/40' : 'border-muted-foreground/15'
-          }`} />
+          <div className="absolute w-40 h-40 rounded-full" style={{
+            border: isConnected ? '2px solid rgba(46,211,154,0.35)' : '2px solid rgba(255,255,255,0.1)'
+          }} />
 
           {/* Inner glow ring */}
           <div className={`absolute w-36 h-36 rounded-full ${
-            isConnected ? 'bg-primary/10' : 'bg-muted/20'
+            isConnected ? 'bg-primary/10' : 'bg-white/5'
           }`} />
 
           {/* Main power button */}
@@ -172,15 +174,23 @@ const HomeScreen = () => {
             whileHover={{ scale: 1.05 }}
             onClick={handleMainAction}
             disabled={isTransitioning}
-            className={`relative w-28 h-28 rounded-full flex items-center justify-center transition-all shadow-2xl ${
+            className={`relative w-28 h-28 rounded-full flex items-center justify-center transition-all ${
               isConnected
-                ? 'bg-gradient-to-br from-primary to-accent vpn-glow'
-                : !hasSubscription
-                  ? 'bg-gradient-to-br from-vpn-warning to-vpn-warning/80'
-                  : isTransitioning
-                    ? 'bg-gradient-to-br from-primary/60 to-accent/60 animate-pulse'
-                    : 'bg-gradient-to-br from-muted to-secondary'
+                ? 'vpn-glow'
+                : isTransitioning
+                  ? 'animate-pulse'
+                  : ''
             } ${isTransitioning ? 'opacity-80' : ''}`}
+            style={{
+              background: isConnected
+                ? 'radial-gradient(circle, #2ED39A, #19A979)'
+                : !hasSubscription
+                  ? `linear-gradient(135deg, hsl(38,92%,50%), hsl(38,80%,40%))`
+                  : isTransitioning
+                    ? 'radial-gradient(circle, rgba(46,211,154,0.6), rgba(25,169,121,0.6))'
+                    : 'rgba(30, 70, 130, 0.65)',
+              boxShadow: isConnected ? '0 0 40px rgba(46,211,154,0.45)' : 'none'
+            }}
           >
             <Power className={`w-10 h-10 ${
               isConnected ? 'text-primary-foreground' : 'text-foreground/70'
